@@ -1,3 +1,20 @@
+const createElement = (arr) => {
+  const htmlElements = arr.map(
+    (el) => `<span class="btn btn-active bg-[#BADEFF]/26">${el}</span>`,
+  );
+  return htmlElements.join(" ");
+};
+
+const manageSpinner = (status) => {
+  if (status === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("word-container").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("word-container").classList.remove("hidden");
+  }
+};
+
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all")
     .then((res) => res.json())
@@ -10,6 +27,7 @@ const removeActive = () => {
 };
 
 const loadLevelWord = (id) => {
+  manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -20,22 +38,6 @@ const loadLevelWord = (id) => {
       displayLevelWord(data.data);
     });
 };
-
-// {
-//     "word": "Eager",
-//     "meaning": "আগ্রহী",
-//     "pronunciation": "ইগার",
-//     "level": 1,
-//     "sentence": "The kids were eager to open their gifts.",
-//     "points": 1,
-//     "partsOfSpeech": "adjective",
-//     "synonyms": [
-//         "enthusiastic",
-//         "excited",
-//         "keen"
-//     ],
-//     "id": 5
-// }
 
 const loadWordDetail = async (id) => {
   const url = `https://openapi.programming-hero.com/api/word/${id}`;
@@ -64,9 +66,7 @@ const displayWordDetails = (word) => {
 
             <div class="">
               <h3 class="bangla font-medium mb-1">সমার্থক শব্দ গুলো</h3>
-              <span class="btn btn-active bg-[#BADEFF]/26">sny1</span>
-              <span class="btn btn-active bg-[#BADEFF]/26">sny1</span>
-              <span class="btn btn-active bg-[#BADEFF]/26">sny1</span>
+              <div class="">${createElement(word.synonyms)}</div>
             </div>
           </div>
 `;
@@ -85,6 +85,7 @@ const displayLevelWord = (words) => {
     <h2 class="text-2xl lg:text-3xl font-medium bangla">নেক্সট Lesson এ যান</h2>
   </div>
     `;
+    manageSpinner(false);
     return;
   }
 
@@ -104,6 +105,7 @@ const displayLevelWord = (words) => {
 
     wordContainer.append(card);
   });
+  manageSpinner(false);
 };
 
 const displayLessons = (lessons) => {
