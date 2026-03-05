@@ -148,3 +148,29 @@ document.getElementById("btn-search").addEventListener("click", () => {
       displayLevelWord(filterWords);
     });
 });
+
+const toggleFAQ = (element) => {
+  const allFAQs = document.querySelectorAll("#faq-container > div");
+  allFAQs.forEach((faq) => {
+    if (faq !== element) {
+      const answer = faq.querySelector(".faq-answer");
+      const icon = faq.querySelector(".faq-icon");
+      answer.classList.remove("max-h-96");
+      answer.classList.add("max-h-0");
+      icon.style.transform = "rotate(0deg)";
+    }
+  });
+
+  const answer = element.querySelector(".faq-answer");
+  const icon = element.querySelector(".faq-icon");
+
+  if (answer.classList.contains("max-h-0")) {
+    answer.classList.remove("max-h-0");
+    answer.classList.add("max-h-96");
+    icon.style.transform = "rotate(45deg)";
+  } else {
+    answer.classList.remove("max-h-96");
+    answer.classList.add("max-h-0");
+    icon.style.transform = "rotate(0deg)";
+  }
+};
