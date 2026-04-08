@@ -35,7 +35,3 @@ An interactive English vocabulary learning platform with structured lessons, sma
 - 📧 **Email:** [gsaharier761@gmail.com](mailto:gsaharier761@gmail.com)
 - 🐙 **GitHub:** [@Saharier36](https://github.com/Saharier36)
 - 💼 **LinkedIn:** [Saharier Omi](https://www.linkedin.com/in/saharier-omi/)
-
----
-
-**Made with ❤️ by Saharier Omi**
